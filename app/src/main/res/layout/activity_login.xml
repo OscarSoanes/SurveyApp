@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/textUsername"
-            android:layout_width="20dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Username"
@@ -78,7 +78,7 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="20dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Password"
@@ -100,11 +100,11 @@
         android:layout_width="262dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
+        android:text="Log in as ..."
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/layoutUsername"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Login as ..." />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
