@@ -7,10 +7,13 @@ import android.view.View
 import android.widget.TextView
 
 class LoginActivity : AppCompatActivity() {
+    var globalRole = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val role = intent.getStringExtra("role")
+        val role = intent.getStringExtra("role").toString()
+        globalRole = role
 
         val info = findViewById<TextView>(R.id.textDetail)
         info.text = "Log in as $role"

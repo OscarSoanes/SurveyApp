@@ -19,7 +19,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun signupStudent(view: View) {
-
+        val intent = Intent(this, SignupActivity::class.java).apply {
+            putExtra("role", "Student")
+        }
+        startActivity(intent)
     }
 
     fun loginAdmin(view: View) {
@@ -30,6 +33,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun signupAdmin(view: View) {
-
+        val intent = Intent(this, SignupActivity::class.java).apply {
+            putExtra("role", "Admin")
+        }
+        startActivity(intent)
     }
 }
