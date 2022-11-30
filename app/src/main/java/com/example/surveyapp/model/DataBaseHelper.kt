@@ -226,7 +226,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         val db: SQLiteDatabase = this.writableDatabase
         val cv = ContentValues()
 
-        cv.put(Column_AdminLogin, admin.loginName)
+        cv.put(Column_AdminLogin, admin.loginName.lowercase())
         cv.put(Column_AdminPassword, admin.password)
 
         val success = db.insert(AdminTableName, null, cv)
@@ -269,6 +269,26 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         return 0
     }
 
+    fun getAdminFromLogin(login: String): Int {
+        val db: SQLiteDatabase
+        try {
+            db = this.readableDatabase
+        } catch (e: SQLiteException) {
+            return -2
+        }
+
+        val sqlStatement = "SELECT * FROM $AdminTableName WHERE $Column_AdminLogin = ?"
+        var param = arrayOf(login.lowercase())
+        var cursor: Cursor = db.rawQuery(sqlStatement, param)
+
+        if (cursor.moveToFirst()) {
+            cursor.close()
+            db.close()
+            return cursor.getInt(0)
+        }
+        return -1 // RECORD NOT FOUND
+    }
+
     // Adds an student to table, returns -1 if error occurred
     fun addStudent(student: Student) : Int {
         val loginExists = checkStudent(student)
@@ -278,7 +298,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         val db: SQLiteDatabase = this.writableDatabase
         val cv = ContentValues()
 
-        cv.put(Column_StudentLogin, student.loginName)
+        cv.put(Column_StudentLogin, student.loginName.lowercase())
         cv.put(Column_StudentPassword, student.password)
 
         val success = db.insert(StudentTableName, null, cv)
