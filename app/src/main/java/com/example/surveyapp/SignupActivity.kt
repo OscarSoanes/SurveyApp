@@ -44,7 +44,6 @@ class SignupActivity : AppCompatActivity() {
             return
         }
 
-        // TODO (CREATE VALIDATION RULES)
         if (globalRole == "Teacher") {
             val newAdmin = Admin(-1, userName, password)
             val database = DataBaseHelper(this)

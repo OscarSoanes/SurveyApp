@@ -450,4 +450,28 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         else return 1
     }
 
+    fun getAllSurveysByAdminId(eID: Int) : ArrayList<Survey> {
+        val surveyList = ArrayList<Survey>()
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $SurveyTableName WHERE $Column_AdminId = $eID"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+
+        if (cursor.moveToFirst())
+            do {
+                val id: Int = cursor.getInt(0)
+                val adminId: Int = cursor.getInt(1)
+                val module: String = cursor.getString(2)
+                val startDate: String = cursor.getString(3)
+                val endDate: String = cursor.getString(4)
+
+                val survey = Survey(id, adminId, module, startDate, endDate)
+                surveyList.add(survey)
+            } while (cursor.moveToNext())
+
+        cursor.close()
+        db.close()
+        return surveyList
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.surveyapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -38,7 +39,10 @@ class LoginActivity : AppCompatActivity() {
             val admin = database.getAdmin(id)
 
             if (admin.password == password) {
-                // TODO LOGIN COMPLETE (PASS ADMIN ID PLS)
+                val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
+                    putExtra("id", id.toString())
+                }
+                startActivity(intent)
                 return
             }
             Toast.makeText(applicationContext, "Username or password is incorrect", Toast.LENGTH_LONG).show()
