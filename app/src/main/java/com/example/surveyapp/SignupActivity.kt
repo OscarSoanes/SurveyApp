@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.surveyapp.model.Admin
 import com.example.surveyapp.model.DataBaseHelper
@@ -17,6 +18,9 @@ class SignupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
         val role = intent.getStringExtra("role").toString()
         globalRole = role
+
+        val info = findViewById<TextView>(R.id.textDetailSignUp)
+        info.text = "Sign up as $role"
     }
 
     fun signUpButton(view: View) {
@@ -41,7 +45,7 @@ class SignupActivity : AppCompatActivity() {
         }
 
         // TODO (CREATE VALIDATION RULES)
-        if (globalRole == "Admin") {
+        if (globalRole == "Teacher") {
             val newAdmin = Admin(-1, userName, password)
             val database = DataBaseHelper(this)
 

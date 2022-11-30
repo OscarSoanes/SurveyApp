@@ -27,14 +27,14 @@ class MainActivity : AppCompatActivity() {
 
     fun loginAdmin(view: View) {
         val intent = Intent(this, LoginActivity::class.java).apply {
-            putExtra("role", "Admin")
+            putExtra("role", "Teacher")
         }
         startActivity(intent)
     }
 
     fun signupAdmin(view: View) {
         val intent = Intent(this, SignupActivity::class.java).apply {
-            putExtra("role", "Admin")
+            putExtra("role", "Teacher")
         }
         startActivity(intent)
     }

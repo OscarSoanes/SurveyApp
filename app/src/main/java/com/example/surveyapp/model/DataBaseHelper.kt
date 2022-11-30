@@ -93,6 +93,43 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         TODO("Not yet implemented")
     }
 
+    fun getAdmin(eID: Int) : Admin {
+        var db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $AdminTableName WHERE $adminColumnID = $eID"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+        if (cursor.moveToFirst()) {
+            db.close()
+            return Admin(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2)
+            )
+        } else {
+            db.close()
+            return Admin(0, "", "")
+        }
+    }
+
+    fun getStudent(eID: Int) : Student {
+        var db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $StudentTableName WHERE $studentColumnID = $eID"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+        if (cursor.moveToFirst()) {
+            db.close()
+            return Student(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2)
+            )
+        } else {
+            db.close()
+            return Student(0, "", "")
+        }
+    }
+
+
     // returns all admins in admin table
     fun getAllAdmins(): ArrayList<Admin> {
         val adminList = ArrayList<Admin>()
@@ -282,9 +319,31 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         var cursor: Cursor = db.rawQuery(sqlStatement, param)
 
         if (cursor.moveToFirst()) {
+            var id = cursor.getInt(0)
             cursor.close()
             db.close()
-            return cursor.getInt(0)
+            return id
+        }
+        return -1 // RECORD NOT FOUND
+    }
+
+    fun getStudentFromLogin(login: String): Int {
+        val db: SQLiteDatabase
+        try {
+            db = this.readableDatabase
+        } catch (e: SQLiteException) {
+            return -2
+        }
+
+        val sqlStatement = "SELECT * FROM $StudentTableName WHERE $Column_StudentLogin = ?"
+        var param = arrayOf(login.lowercase())
+        var cursor: Cursor = db.rawQuery(sqlStatement, param)
+
+        if (cursor.moveToFirst()) {
+            var id = cursor.getInt(0)
+            cursor.close()
+            db.close()
+            return id
         }
         return -1 // RECORD NOT FOUND
     }

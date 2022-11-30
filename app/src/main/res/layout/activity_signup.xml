@@ -85,13 +85,13 @@
         android:layout_width="262dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
+        android:text="Sign up as ..."
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/layoutUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Sign up as ..." />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textTitle4"

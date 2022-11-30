@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import com.example.surveyapp.model.DataBaseHelper
 
 class LoginActivity : AppCompatActivity() {
     var globalRole = ""
@@ -20,12 +23,41 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun loginButton(view: View) {
-        val role = intent.getStringExtra("role")
+        val userName = findViewById<EditText>(R.id.editTextUsername).text.toString()
+        val password = findViewById<EditText>(R.id.editTextPassword).text.toString()
 
-        if (role.equals("Student")) {
-            // TODO (read from database)
-        } else {
-            // TODO (read from database)
+        if (globalRole == "Teacher") {
+            val database = DataBaseHelper(this)
+            val id = database.getAdminFromLogin(userName)
+
+            if (id < 0) {
+                Toast.makeText(applicationContext, "Username or password is incorrect", Toast.LENGTH_LONG).show()
+                return
+            }
+
+            val admin = database.getAdmin(id)
+
+            if (admin.password == password) {
+                // TODO LOGIN COMPLETE (PASS ADMIN ID PLS)
+                return
+            }
+            Toast.makeText(applicationContext, "Username or password is incorrect", Toast.LENGTH_LONG).show()
+            return
         }
+        val database = DataBaseHelper(this)
+        val id = database.getStudentFromLogin(userName)
+
+        if (id < 0) {
+            Toast.makeText(applicationContext, "Username or password is incorrect", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        val student = database.getStudent(id)
+
+        if (student.password == password) {
+            // TODO LOGIN COMPLETE (PASS STUDENT ID PLS)
+            return
+        }
+        Toast.makeText(applicationContext, "Username or password is incorrect", Toast.LENGTH_LONG).show()
     }
 }
