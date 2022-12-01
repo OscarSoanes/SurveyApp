@@ -108,8 +108,15 @@ class CreateQuestionActivity : AppCompatActivity() {
                 putExtra("index", index.toString())
             }
             startActivity(intent)
+        } else {
+            val intent = Intent(this, ConfirmSurveyAdminActivity::class.java).apply {
+                putExtra("id", adminId.toString())
+                putExtra("survey", survey)
+                putExtra("questions", questions)
+            }
+            startActivity(intent)
         }
-        // Display all saved data activity
+
 
     }
 
