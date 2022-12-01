@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.example.surveyapp.model.Survey
 
 class CustomAdapterAdminSurvey (private val appContext: Context, private val surveyList: ArrayList<Survey>) : BaseAdapter() {
@@ -36,8 +37,20 @@ class CustomAdapterAdminSurvey (private val appContext: Context, private val sur
         // storing survey ID to buttons
         val edit = view.findViewById<Button>(R.id.btnEdit)
         val data = view.findViewById<Button>(R.id.btnData)
-        edit.tag = surveyList[position].surveyId
-        data.tag = surveyList[position].surveyId
+
+        /**
+        Acts as on Click
+         */
+        val surveyId = surveyList[position].surveyId
+        val adminId = surveyList[position].adminId
+        edit.setOnClickListener {
+            Toast.makeText(appContext, "$surveyId and $adminId", Toast.LENGTH_LONG).show()
+
+        }
+
+        data.setOnClickListener {
+            Toast.makeText(appContext, "Data button working", Toast.LENGTH_LONG).show()
+        }
 
         return view
     }
