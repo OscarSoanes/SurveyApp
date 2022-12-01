@@ -37,25 +37,20 @@ class CreateQuestionActivity : AppCompatActivity() {
             // this should be first question
         }
 
-        try {
-            val question = intent.getSerializableExtra("question") as Question
-            if (question.questionText.isNotEmpty()) {
-                var txtQuestion = findViewById<TextView>(R.id.editTextQuestion)
-                txtQuestion.text = question.questionText
-            }
-        } catch (_: NullPointerException) {
-            // user has not gone previous
-        }
-
         adminId = id
         survey = data
         index = i
 
+        val txtQuestion = findViewById<EditText>(R.id.editTextQuestion)
+        if (index != questions.getCount()) {
+            txtQuestion.setText(questions.getQuestion(index).questionText)
+        }
+
         // changing values
-        var txtModule = findViewById<TextView>(R.id.textModule)
-        var txtQuestionCount = findViewById<TextView>(R.id.textQuestionCount)
-        var btnPrevious = findViewById<Button>(R.id.btnPrev)
-        var btnNext = findViewById<Button>(R.id.btnNext)
+        val txtModule = findViewById<TextView>(R.id.textModule)
+        val txtQuestionCount = findViewById<TextView>(R.id.textQuestionCount)
+        val btnPrevious = findViewById<Button>(R.id.btnPrev)
+        val btnNext = findViewById<Button>(R.id.btnNext)
 
         txtModule.text = survey.module
         txtQuestionCount.text = "Question ${index + 1}/10"
@@ -79,7 +74,6 @@ class CreateQuestionActivity : AppCompatActivity() {
             putExtra("survey", survey)
             putExtra("questions", questions)
             putExtra("index", index.toString())
-            putExtra("question", previousQuestion)
         }
         startActivity(intent)
     }
@@ -93,20 +87,30 @@ class CreateQuestionActivity : AppCompatActivity() {
             return
         }
 
-        // Add question to ArrayList
+        // Add question to ArrayList or update if we have data later on
         val question = Question(-1, survey.surveyId, questionText)
-        questions.addQuestion(question)
-        index++
 
-        Toast.makeText(applicationContext, "$questions", Toast.LENGTH_LONG).show()
-
-        val intent = Intent(this, CreateQuestionActivity::class.java).apply {
-            putExtra("id", adminId.toString())
-            putExtra("survey", survey)
-            putExtra("questions", questions)
-            putExtra("index", index.toString())
+        if (index == questions.getCount()) {
+            questions.addQuestion(question)
+            index++
+        } else {
+            questions.updateQuestionAtIndex(index, question)
+            index++
         }
-        startActivity(intent)
+
+
+        // if we are at point need to save
+        if (index != 10) {
+            val intent = Intent(this, CreateQuestionActivity::class.java).apply {
+                putExtra("id", adminId.toString())
+                putExtra("survey", survey)
+                putExtra("questions", questions)
+                putExtra("index", index.toString())
+            }
+            startActivity(intent)
+        }
+        // Display all saved data activity
+
     }
 
     fun cancel(view: View) {

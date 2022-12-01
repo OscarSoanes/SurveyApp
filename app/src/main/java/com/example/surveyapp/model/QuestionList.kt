@@ -11,6 +11,10 @@ class QuestionList (): Serializable {
         count++
     }
 
+    fun updateQuestionAtIndex(id: Int, question: Question) {
+        questionList[id] = question
+    }
+
     fun getCount(): Int = count
 
     fun getQuestion(index: Int) : Question {
