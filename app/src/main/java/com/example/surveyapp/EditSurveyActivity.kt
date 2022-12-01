@@ -49,7 +49,10 @@ class EditSurveyActivity : AppCompatActivity() {
         val database = DataBaseHelper(this)
         database.updateSurvey(survey)
 
-
+        val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
+            putExtra("id", adminId.toString())
+        }
+        startActivity(intent)
 
     }
 
@@ -61,7 +64,10 @@ class EditSurveyActivity : AppCompatActivity() {
     }
 
     fun btnDelete(view: View) {
-        val database = DataBaseHelper(this)
-        database.deleteSurvey(survey)
+        val intent = Intent(this, ConfirmDeleteActivity::class.java).apply {
+            putExtra("id", adminId.toString())
+            putExtra("survey", survey)
+        }
+        startActivity(intent)
     }
 }
