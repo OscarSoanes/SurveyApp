@@ -1,6 +1,7 @@
 package com.example.surveyapp
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.surveyapp.model.Survey
 
-class CustomAdapterAdminSurvey (private val appContext: Context, private val surveyList: ArrayList<Survey>) : BaseAdapter() {
+class CustomAdapterAdminSurvey (private val appContext: Context, private val surveyList: ArrayList<Survey>,
+private var display: AdminDisplaySurveysActivity) : BaseAdapter() {
 
     private val inflater: LayoutInflater
             = appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -42,14 +44,12 @@ class CustomAdapterAdminSurvey (private val appContext: Context, private val sur
         Acts as on Click
          */
         val surveyId = surveyList[position].surveyId
-        val adminId = surveyList[position].adminId
         edit.setOnClickListener {
-            Toast.makeText(appContext, "$surveyId and $adminId", Toast.LENGTH_LONG).show()
-
-        }
+            display.btnEdit(view, surveyId)
+            }
 
         data.setOnClickListener {
-            Toast.makeText(appContext, "Data button working", Toast.LENGTH_LONG).show()
+            display.btnData(view, surveyId)
         }
 
         return view

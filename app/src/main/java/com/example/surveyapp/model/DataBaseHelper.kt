@@ -130,6 +130,26 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
     }
 
 
+    fun getSurvey(eID: Int) : Survey {
+        var db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $SurveyTableName WHERE $surveyColumnID = $eID"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+        if (cursor.moveToFirst()) {
+            db.close()
+            return Survey(
+                cursor.getInt(0),
+                cursor.getInt(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getString(4)
+            )
+        } else {
+            db.close()
+            return Survey(0, 0, "", "", "")
+        }
+    }
+
     // returns all admins in admin table
     fun getAllAdmins(): ArrayList<Admin> {
         val adminList = ArrayList<Admin>()
@@ -474,4 +494,25 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         return surveyList
     }
 
+    fun updateSurvey(survey: Survey): Boolean {
+        val db: SQLiteDatabase = this.writableDatabase
+        val cv: ContentValues = ContentValues()
+
+        cv.put(Column_Module, survey.module)
+        cv.put(Column_StartDate, survey.startDate)
+        cv.put(Column_EndDate, survey.endDate)
+
+        val result = db.update(SurveyTableName, cv, "$surveyColumnID = ${survey.surveyId}",
+        null) == 1
+        db.close()
+        return result
+    }
+
+    fun deleteSurvey(survey: Survey) : Boolean {
+        val db: SQLiteDatabase = this.writableDatabase
+        val result = db.delete(SurveyTableName, "$surveyColumnID = ${survey.surveyId}", null) == 1
+
+        db.close()
+        return result
+    }
 }
