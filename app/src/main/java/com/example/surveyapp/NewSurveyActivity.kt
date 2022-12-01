@@ -28,20 +28,28 @@ class NewSurveyActivity : AppCompatActivity() {
         // TODO VALIDATION ON DATES
 
         val newSurvey = Survey(-1, globalId, title, startDate, endDate)
-        val database = DataBaseHelper(this)
 
-        when (database.addSurvey(newSurvey)) {
-            1 -> {
-                Toast.makeText(applicationContext, "Working", Toast.LENGTH_LONG).show()
-                val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
-                    putExtra("id", globalId.toString())
-                }
-                startActivity(intent)
-            }
-            -1 -> {
-                Toast.makeText(applicationContext, "Error creating new survey", Toast.LENGTH_LONG).show()
-            }
+        val intent = Intent(this, CreateQuestionActivity::class.java).apply {
+            putExtra("id", globalId.toString())
+            putExtra("survey", newSurvey)
+            putExtra("index", "0")
         }
+        startActivity(intent)
+        /** REPLACE CODE TO NEW PART */
+//        val database = DataBaseHelper(this)
+
+//        when (database.addSurvey(newSurvey)) {
+//            1 -> {
+//                Toast.makeText(applicationContext, "Working", Toast.LENGTH_LONG).show()
+//                val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
+//                    putExtra("id", globalId.toString())
+//                }
+//                startActivity(intent)
+//            }
+//            -1 -> {
+//                Toast.makeText(applicationContext, "Error creating new survey", Toast.LENGTH_LONG).show()
+//            }
+//        }
     }
 
     fun btnGoBack(view: View) {
