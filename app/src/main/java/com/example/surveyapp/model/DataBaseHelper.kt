@@ -275,9 +275,9 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
     }
 
     // Adds an admin to table, returns -1 if error occurred
-    fun addAdmin(admin: Admin) : Int {
+    fun addAdmin(admin: Admin) : Long {
         val loginExists = checkAdmin(admin)
-        if (loginExists < 0)
+        if (loginExists.toInt() < 0)
             return loginExists
 
         val db: SQLiteDatabase = this.writableDatabase
@@ -286,11 +286,11 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         cv.put(Column_AdminLogin, admin.loginName.lowercase())
         cv.put(Column_AdminPassword, admin.password)
 
-        val success = db.insert(AdminTableName, null, cv)
+        val id = db.insert(AdminTableName, null, cv)
         db.close()
 
-        if (success.toInt() == -1) return success.toInt()
-        else return 1
+        if (id.toInt() == -1) return id
+        else return id
     }
 
     /**
@@ -299,7 +299,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
      * -3 = Username already exists
      * 0 = User not found (check passed)
      */
-    private fun checkAdmin(admin: Admin): Int {
+    private fun checkAdmin(admin: Admin): Long {
         val db: SQLiteDatabase
         try {
             db = this.readableDatabase
@@ -369,9 +369,9 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
     }
 
     // Adds an student to table, returns -1 if error occurred
-    fun addStudent(student: Student) : Int {
+    fun addStudent(student: Student) : Long {
         val loginExists = checkStudent(student)
-        if (loginExists < 0)
+        if (loginExists.toInt() < 0)
             return loginExists
 
         val db: SQLiteDatabase = this.writableDatabase
@@ -380,11 +380,11 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         cv.put(Column_StudentLogin, student.loginName.lowercase())
         cv.put(Column_StudentPassword, student.password)
 
-        val success = db.insert(StudentTableName, null, cv)
+        val id = db.insert(StudentTableName, null, cv)
         db.close()
 
-        if (success.toInt() == -1) return success.toInt()
-        else return 1
+        if (id.toInt() == -1) return id
+        else return id
     }
 
     /**
@@ -393,7 +393,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
      * -3 = Username already exists
      * 0 = User not found (check passed)
      */
-    private fun checkStudent(student: Student): Int {
+    private fun checkStudent(student: Student): Long {
         val db: SQLiteDatabase
         try {
             db = this.readableDatabase
@@ -433,8 +433,8 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         val id = db.insert(SurveyTableName, null, cv)
         db.close()
 
-        if (id.toInt() == -1) return id
-        else return id
+        return if (id.toInt() == -1) id
+        else id
     }
 
     // Adds an question to table, returns -1 if error occurred
@@ -522,5 +522,45 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
 
         db.close()
         return result
+    }
+
+    fun getAllSurveysToBeCompleted(eID: Int) : ArrayList<Survey> {
+        val surveyList = ArrayList<Survey>()
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $SurveyTableName"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+
+        if (cursor.moveToFirst())
+            do {
+                val id: Int = cursor.getInt(0)
+                val adminId: Int = cursor.getInt(1)
+                val module: String = cursor.getString(2)
+                var startDate: String = cursor.getString(3)
+                var endDate: String = cursor.getString(4)
+
+                val survey = Survey(id, adminId, module, startDate, endDate)
+                if (hasSurveyBeenCompletedByStudent(eID, survey)) {
+                    surveyList.add(survey)
+                }
+            } while (cursor.moveToNext())
+
+        cursor.close()
+        db.close()
+
+        return surveyList
+    }
+
+    private fun hasSurveyBeenCompletedByStudent(eID: Int, survey: Survey) : Boolean {
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $StudentSurveyResponseTableName WHERE $Column_StudentId = $eID AND $Column_SurveyId = ${survey.surveyId}"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+        if (!cursor.moveToFirst()) {
+            db.close()
+            cursor.close()
+            return true
+        }
+        return false
     }
 }

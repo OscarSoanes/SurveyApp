@@ -1,14 +1,17 @@
 package com.example.surveyapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.surveyapp.adminController.AdminDisplaySurveysActivity
 import com.example.surveyapp.model.Admin
 import com.example.surveyapp.model.DataBaseHelper
 import com.example.surveyapp.model.Student
+import com.example.surveyapp.studentController.StudentPanelActivity
 
 class SignupActivity : AppCompatActivity() {
     var globalRole = ""
@@ -47,11 +50,12 @@ class SignupActivity : AppCompatActivity() {
         if (globalRole == "Teacher") {
             val newAdmin = Admin(-1, userName, password)
             val database = DataBaseHelper(this)
-
-            when (database.addAdmin(newAdmin)) {
-                1 -> {
-                    Toast.makeText(applicationContext, "Working", Toast.LENGTH_LONG).show()
-                    // TODO GOTO ADMIN PANEL (PASS ADMIN ID PLEASE)
+            when (val id = database.addAdmin(newAdmin).toInt()) {
+                in 1 .. Int.MAX_VALUE -> {
+                    val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
+                        putExtra("id", id.toString())
+                    }
+                    startActivity(intent)
                 }
                 -1 -> Toast.makeText(applicationContext, "Error creating new account", Toast.LENGTH_LONG).show()
                 -2 -> Toast.makeText(applicationContext, "Cannot open database", Toast.LENGTH_LONG).show()
@@ -62,10 +66,14 @@ class SignupActivity : AppCompatActivity() {
         val newStudent = Student(-1, userName, password)
         val database = DataBaseHelper(this)
 
-        when (database.addStudent(newStudent)) {
-            1 -> {
+
+        when (val id = database.addStudent(newStudent).toInt()) {
+            in 1 .. Int.MAX_VALUE -> {
                 Toast.makeText(applicationContext, "Working", Toast.LENGTH_LONG).show()
-                // TODO GOTO STUDENT PANEL (PASS STUDENT ID PLEASE)
+                val intent = Intent(this, StudentPanelActivity::class.java).apply {
+                    putExtra("id", id.toString())
+                }
+                startActivity(intent)
             }
             -1 -> Toast.makeText(applicationContext, "Error creating new account", Toast.LENGTH_LONG).show()
             -2 -> Toast.makeText(applicationContext, "Cannot open database", Toast.LENGTH_LONG).show()

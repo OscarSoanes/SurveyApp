@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.surveyapp.adminController.AdminDisplaySurveysActivity
 import com.example.surveyapp.model.DataBaseHelper
+import com.example.surveyapp.studentController.StudentPanelActivity
 
 class LoginActivity : AppCompatActivity() {
     var globalRole = ""
@@ -27,8 +28,9 @@ class LoginActivity : AppCompatActivity() {
         val userName = findViewById<EditText>(R.id.editTextUsername).text.toString()
         val password = findViewById<EditText>(R.id.editTextPassword).text.toString()
 
+        val database = DataBaseHelper(this)
+
         if (globalRole == "Teacher") {
-            val database = DataBaseHelper(this)
             val id = database.getAdminFromLogin(userName)
 
             if (id < 0) {
@@ -48,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Username or password is incorrect", Toast.LENGTH_LONG).show()
             return
         }
-        val database = DataBaseHelper(this)
+
         val id = database.getStudentFromLogin(userName)
 
         if (id < 0) {
@@ -59,7 +61,10 @@ class LoginActivity : AppCompatActivity() {
         val student = database.getStudent(id)
 
         if (student.password == password) {
-            // TODO LOGIN COMPLETE (PASS STUDENT ID PLS)
+            val intent = Intent(this, StudentPanelActivity::class.java).apply {
+                putExtra("id", id.toString())
+            }
+            startActivity(intent)
             return
         }
         Toast.makeText(applicationContext, "Username or password is incorrect", Toast.LENGTH_LONG).show()
