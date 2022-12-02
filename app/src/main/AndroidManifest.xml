@@ -13,6 +13,13 @@
         android:theme="@style/Theme.SurveyApp"
         tools:targetApi="31">
         <activity
+            android:name=".studentController.StudentAnswerQuestionActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".studentController.StudentPanelSurveyListView"
             android:exported="false">
             <meta-data
