@@ -118,7 +118,7 @@ class NewSurveyActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
             return
         }
-        message = beforeCheck(sd, current, "The end date cannot be in past")
+        message = beforeCheck(ed, current, "The end date cannot be in past")
         if (message.isNotEmpty()) {
             Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
             return
