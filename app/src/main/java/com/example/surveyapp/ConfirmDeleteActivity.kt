@@ -33,6 +33,8 @@ class ConfirmDeleteActivity : AppCompatActivity() {
         val database = DataBaseHelper(this)
         database.deleteSurvey(survey)
 
+        database.deleteQuestionBySurveyId(survey.surveyId)
+
         Toast.makeText(applicationContext, "Successfully deleted", Toast.LENGTH_LONG).show()
         val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
             putExtra("id", adminId.toString())
