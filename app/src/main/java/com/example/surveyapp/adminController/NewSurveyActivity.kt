@@ -1,17 +1,16 @@
-package com.example.surveyapp
+package com.example.surveyapp.adminController
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
-import android.widget.Toast
-import com.example.surveyapp.model.DataBaseHelper
+import com.example.surveyapp.R
 import com.example.surveyapp.model.Survey
 import java.lang.Integer.parseInt
 
 class NewSurveyActivity : AppCompatActivity() {
-    var globalId = 0
+    private var globalId = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_survey)
@@ -35,21 +34,6 @@ class NewSurveyActivity : AppCompatActivity() {
             putExtra("index", "0")
         }
         startActivity(intent)
-        /** REPLACE CODE TO NEW PART */
-//        val database = DataBaseHelper(this)
-
-//        when (database.addSurvey(newSurvey)) {
-//            1 -> {
-//                Toast.makeText(applicationContext, "Working", Toast.LENGTH_LONG).show()
-//                val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
-//                    putExtra("id", globalId.toString())
-//                }
-//                startActivity(intent)
-//            }
-//            -1 -> {
-//                Toast.makeText(applicationContext, "Error creating new survey", Toast.LENGTH_LONG).show()
-//            }
-//        }
     }
 
     fun btnGoBack(view: View) {

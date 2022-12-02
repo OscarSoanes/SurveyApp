@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewSurveyActivity">
+    tools:context=".adminController.NewSurveyActivity">
 
     <TextView
         android:id="@+id/textTitle"
@@ -71,7 +71,7 @@
             android:layout_height="48dp"
             android:ems="10"
             android:hint="1/1/2022"
-            android:inputType="date" />
+            android:inputType="date"/>
     </LinearLayout>
 
     <LinearLayout
@@ -109,7 +109,7 @@
         android:layout_marginBottom="32dp"
         android:backgroundTint="#0D47A1"
         android:onClick="btnSave"
-        android:text="Save"
+        android:text="Questions"
         app:layout_constraintBottom_toTopOf="@+id/btnReturn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

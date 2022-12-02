@@ -1,19 +1,19 @@
-package com.example.surveyapp
+package com.example.surveyapp.adminController
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.ListView
-import android.widget.Toast
+import com.example.surveyapp.MainActivity
+import com.example.surveyapp.R
 import com.example.surveyapp.model.DataBaseHelper
 import com.example.surveyapp.model.Survey
 import java.lang.Integer.parseInt
 
 class AdminDisplaySurveysActivity : AppCompatActivity() {
-    var globalId = 0
-    var surveyList = ArrayList<Survey>()
+    private var globalId = 0
+    private var surveyList = ArrayList<Survey>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admin_display_surveys)
@@ -51,6 +51,6 @@ class AdminDisplaySurveysActivity : AppCompatActivity() {
     }
 
     fun btnData(view: View, surveyId: Int) {
-        //TODO
+        // TODO (CREATE STUDENT FIRST)
     }
 }

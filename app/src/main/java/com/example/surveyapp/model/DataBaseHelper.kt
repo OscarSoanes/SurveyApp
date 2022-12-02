@@ -420,7 +420,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         return 0
     }
 
-    // Adds an survey to table, returns -1 if error occurred
+    // Adds an survey to table, returns -1 if error occurred, also returns ID of new survey
     fun addSurvey(survey: Survey) : Long {
         val db: SQLiteDatabase = this.writableDatabase
         val cv = ContentValues()

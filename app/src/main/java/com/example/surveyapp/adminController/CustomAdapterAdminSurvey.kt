@@ -1,18 +1,18 @@
-package com.example.surveyapp
+package com.example.surveyapp.adminController
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
+import com.example.surveyapp.R
 import com.example.surveyapp.model.Survey
 
 class CustomAdapterAdminSurvey (private val appContext: Context, private val surveyList: ArrayList<Survey>,
-private var display: AdminDisplaySurveysActivity) : BaseAdapter() {
+private var display: AdminDisplaySurveysActivity
+) : BaseAdapter() {
 
     private val inflater: LayoutInflater
             = appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

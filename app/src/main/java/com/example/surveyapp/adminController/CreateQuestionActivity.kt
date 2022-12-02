@@ -1,4 +1,4 @@
-package com.example.surveyapp
+package com.example.surveyapp.adminController
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,14 +8,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.surveyapp.model.DataBaseHelper
+import com.example.surveyapp.R
 import com.example.surveyapp.model.Question
 import com.example.surveyapp.model.QuestionList
 import com.example.surveyapp.model.Survey
 import java.lang.Integer.parseInt
 
 class CreateQuestionActivity : AppCompatActivity() {
-    var adminId = 0
+    private var adminId = 0
     var survey = Survey(0, 0, "", "", "")
     var questions = QuestionList()
     var index = 0
@@ -34,7 +34,7 @@ class CreateQuestionActivity : AppCompatActivity() {
             val questionList = intent.getSerializableExtra("questions") as QuestionList
             questions = questionList
         } catch (_: NullPointerException) {
-            // this should be first question
+            // this is the initial first question, nothing serious happens
         }
 
         adminId = id
@@ -66,8 +66,6 @@ class CreateQuestionActivity : AppCompatActivity() {
 
     fun previous(view: View) {
         index--
-        val previousQuestion: Question = questions.getQuestion(index)
-
 
         val intent = Intent(this, CreateQuestionActivity::class.java).apply {
             putExtra("id", adminId.toString())
@@ -87,17 +85,15 @@ class CreateQuestionActivity : AppCompatActivity() {
             return
         }
 
-        // Add question to ArrayList or update if we have data later on
+        // Add question to ArrayList or update at current index if we have data later on
         val question = Question(-1, survey.surveyId, questionText)
-
         if (index == questions.getCount()) {
             questions.addQuestion(question)
-            index++
         } else {
             questions.updateQuestionAtIndex(index, question)
-            index++
         }
 
+        index++
 
         // if we are at point need to save
         if (index != 10) {
@@ -116,11 +112,12 @@ class CreateQuestionActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
-
-
     }
 
     fun cancel(view: View) {
-
+        val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
+            putExtra("id", adminId.toString())
+        }
+        startActivity(intent)
     }
 }

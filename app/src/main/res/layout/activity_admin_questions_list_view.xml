@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminQuestionsListView">
+    tools:context=".adminController.AdminQuestionsListView">
 
     <LinearLayout
         android:layout_width="match_parent"

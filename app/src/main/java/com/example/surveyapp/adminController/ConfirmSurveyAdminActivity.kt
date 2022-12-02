@@ -1,4 +1,4 @@
-package com.example.surveyapp
+package com.example.surveyapp.adminController
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,15 +7,16 @@ import android.view.View
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
+import com.example.surveyapp.R
 import com.example.surveyapp.model.DataBaseHelper
 import com.example.surveyapp.model.QuestionList
 import com.example.surveyapp.model.Survey
 import java.lang.Integer.parseInt
 
 class ConfirmSurveyAdminActivity : AppCompatActivity() {
-    var adminId = 0
+    private var adminId = 0
     var survey = Survey(0, 0, "", "", "")
-    var questions = QuestionList()
+    private var questions = QuestionList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +31,7 @@ class ConfirmSurveyAdminActivity : AppCompatActivity() {
         questions = questionList
 
         val module = findViewById<TextView>(R.id.textModule)
-        module.setText(survey.module)
+        module.text = survey.module
 
         val displayList = findViewById<ListView>(R.id.listQuestions)
         val customAdapterAdminQuestionSurvey = CustomAdapterAdminQuestionSurvey(applicationContext,

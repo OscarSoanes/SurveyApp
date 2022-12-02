@@ -1,4 +1,4 @@
-package com.example.surveyapp
+package com.example.surveyapp.adminController
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.example.surveyapp.model.Question
+import com.example.surveyapp.R
 import com.example.surveyapp.model.QuestionList
 
 class CustomAdapterAdminQuestionSurvey (private val appContext: Context, private val questions: QuestionList) :
-BaseAdapter( ) {
+BaseAdapter() {
 
     private val inflater: LayoutInflater
     = appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

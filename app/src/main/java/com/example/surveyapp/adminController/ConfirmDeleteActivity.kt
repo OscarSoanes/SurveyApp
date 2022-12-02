@@ -1,18 +1,18 @@
-package com.example.surveyapp
+package com.example.surveyapp.adminController
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
+import com.example.surveyapp.R
 import com.example.surveyapp.model.DataBaseHelper
 import com.example.surveyapp.model.Survey
 import java.lang.Integer.parseInt
 
 class ConfirmDeleteActivity : AppCompatActivity() {
-    var adminId = 0
+    private var adminId = 0
     var survey = Survey(0,0,"","","")
 
     override fun onCreate(savedInstanceState: Bundle?) {

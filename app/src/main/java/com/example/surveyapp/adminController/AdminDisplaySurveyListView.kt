@@ -1,10 +1,8 @@
-package com.example.surveyapp
+package com.example.surveyapp.adminController
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
+import com.example.surveyapp.R
 
 class AdminDisplaySurveyListView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

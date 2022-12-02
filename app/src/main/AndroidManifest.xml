@@ -13,56 +13,56 @@
         android:theme="@style/Theme.SurveyApp"
         tools:targetApi="31">
         <activity
-            android:name=".AdminQuestionsListView"
+            android:name=".adminController.AdminQuestionsListView"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ConfirmSurveyAdminActivity"
+            android:name=".adminController.ConfirmSurveyAdminActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CreateQuestionActivity"
+            android:name=".adminController.CreateQuestionActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".ConfirmDeleteActivity"
+            android:name=".adminController.ConfirmDeleteActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".EditSurveyActivity"
+            android:name=".adminController.EditSurveyActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".NewSurveyActivity"
+            android:name=".adminController.NewSurveyActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AdminDisplaySurveyListView"
+            android:name=".adminController.AdminDisplaySurveyListView"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AdminDisplaySurveysActivity"
+            android:name=".adminController.AdminDisplaySurveysActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
