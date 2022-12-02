@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import java.sql.SQLException
+import java.util.*
+import kotlin.collections.ArrayList
 
 // config
 private val databaseName = "Survey.db"
@@ -559,7 +561,15 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         if (!cursor.moveToFirst()) {
             db.close()
             cursor.close()
-            return true
+
+            // ensuring end date has not passed
+            val sdf = java.text.SimpleDateFormat("dd/MM/yyyy", Locale.UK)
+            val ed = sdf.parse(survey.endDate)
+            val current = sdf.parse(sdf.format(Date()))
+
+            if (ed.after(current)) {
+                return true
+            }
         }
         return false
     }
