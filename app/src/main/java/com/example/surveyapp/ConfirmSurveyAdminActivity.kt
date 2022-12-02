@@ -1,9 +1,13 @@
 package com.example.surveyapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
+import com.example.surveyapp.model.DataBaseHelper
 import com.example.surveyapp.model.QuestionList
 import com.example.surveyapp.model.Survey
 import java.lang.Integer.parseInt
@@ -34,5 +38,33 @@ class ConfirmSurveyAdminActivity : AppCompatActivity() {
 
         displayList.adapter = customAdapterAdminQuestionSurvey
 
+    }
+
+    fun btnSave(view: View) {
+        val database = DataBaseHelper(this)
+
+        val surveyId = database.addSurvey(survey).toInt()
+        questions = questions.updateQuestionSurveyId(surveyId)
+
+        for (question in questions.getQuestions()) {
+            database.addQuestion(question)
+        }
+
+        Toast.makeText(applicationContext, "Record saved!", Toast.LENGTH_LONG).show()
+        val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
+            putExtra("id", adminId.toString())
+        }
+        startActivity(intent)
+    }
+
+    fun btnReturn(view: View) {
+        val intent = Intent(this, CreateQuestionActivity::class.java).apply {
+            putExtra("id", adminId.toString())
+            putExtra("survey", survey)
+            putExtra("index", "0")
+            putExtra("questions", questions)
+        }
+
+        startActivity(intent)
     }
 }

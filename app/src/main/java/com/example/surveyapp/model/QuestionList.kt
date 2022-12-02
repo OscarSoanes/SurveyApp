@@ -15,7 +15,23 @@ class QuestionList (): Serializable {
         questionList[id] = question
     }
 
+    fun updateQuestionSurveyId(id: Int) : QuestionList {
+        var updatedQuestionList: ArrayList<Question> = ArrayList()
+
+
+        for (question in questionList) {
+            updatedQuestionList.add(Question(question.questionId, id, question.questionText))
+        }
+
+        questionList.clear()
+        questionList.addAll(updatedQuestionList)
+
+        return this
+    }
+
     fun getCount(): Int = count
+
+    fun getQuestions(): ArrayList<Question> = questionList
 
     fun getQuestion(index: Int) : Question {
         return questionList.get(index)

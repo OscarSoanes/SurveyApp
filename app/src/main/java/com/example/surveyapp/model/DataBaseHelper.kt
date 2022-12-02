@@ -421,7 +421,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
     }
 
     // Adds an survey to table, returns -1 if error occurred
-    fun addSurvey(survey: Survey) : Int {
+    fun addSurvey(survey: Survey) : Long {
         val db: SQLiteDatabase = this.writableDatabase
         val cv = ContentValues()
 
@@ -430,11 +430,11 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         cv.put(Column_StartDate, survey.startDate)
         cv.put(Column_EndDate, survey.endDate)
 
-        val success = db.insert(SurveyTableName, null, cv)
+        val id = db.insert(SurveyTableName, null, cv)
         db.close()
 
-        if (success.toInt() == -1) return success.toInt()
-        else return 1
+        if (id.toInt() == -1) return id
+        else return id
     }
 
     // Adds an question to table, returns -1 if error occurred
@@ -511,6 +511,14 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
     fun deleteSurvey(survey: Survey) : Boolean {
         val db: SQLiteDatabase = this.writableDatabase
         val result = db.delete(SurveyTableName, "$surveyColumnID = ${survey.surveyId}", null) == 1
+
+        db.close()
+        return result
+    }
+
+    fun deleteQuestionBySurveyId(eID: Int) : Boolean {
+        val db: SQLiteDatabase = this.writableDatabase
+        val result = db.delete(QuestionTableName, "$Column_SurveyId = $eID", null) == 1
 
         db.close()
         return result
