@@ -161,7 +161,13 @@ class StudentAnswerQuestionActivity : AppCompatActivity() {
             }
             startActivity(intent)
         } else {
-            // GO TO CONFIRM BUTTON
+            var intent = Intent(this, ReviewSurveyActivity::class.java).apply {
+                putExtra("id", studentId.toString())
+                putExtra("answerList", answers)
+                putExtra("questionList", questions)
+                putExtra("survey", survey)
+            }
+            startActivity(intent)
         }
 
 
