@@ -39,10 +39,10 @@ class CustomAdapterStudentSurvey (private val appContext: Context, private val s
         endText.text = surveyList[position].endDate
 
         val start = view.findViewById<Button>(R.id.btnStart)
-        val surveyId = surveyList[position].surveyId
+        val survey = surveyList[position]
 
         start.setOnClickListener {
-            display.btnStart(view, surveyId)
+            display.btnStart(view, survey)
         }
 
         return view

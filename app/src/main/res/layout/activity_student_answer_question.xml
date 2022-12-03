@@ -43,35 +43,35 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioStrongAgree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#1B5E20"
             android:text="Strongly Agree" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioAgree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#33691E"
             android:text="Agree" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/radioNeutral"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#827717"
             android:text="Neither Agree nor Disagree" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/radioDisagree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#FF6F00"
             android:text="Disagree" />
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/radioStrongDisagree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#B71C1C"

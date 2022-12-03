@@ -37,6 +37,7 @@
             android:layout_marginStart="20dp"
             android:layout_weight="1"
             android:backgroundTint="#33691E"
-            android:text="Start" />
+            android:text="Start"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

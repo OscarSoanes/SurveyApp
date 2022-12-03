@@ -36,7 +36,12 @@ class StudentPanelActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun btnStart(view: View, surveyId: Int) {
-        Toast.makeText(this,"$surveyId & $studentId",Toast.LENGTH_LONG).show()
+    fun btnStart(view: View, survey: Survey) {
+        var intent = Intent(this, StudentAnswerQuestionActivity::class.java).apply {
+            putExtra("id", studentId.toString())
+            putExtra("survey", survey)
+            putExtra("index", "0")
+        }
+        startActivity(intent)
     }
 }
