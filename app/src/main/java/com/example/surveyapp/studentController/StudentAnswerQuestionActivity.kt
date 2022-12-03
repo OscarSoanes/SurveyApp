@@ -7,11 +7,9 @@ import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
+import android.widget.Toast
 import com.example.surveyapp.R
-import com.example.surveyapp.model.AnswerList
-import com.example.surveyapp.model.DataBaseHelper
-import com.example.surveyapp.model.QuestionList
-import com.example.surveyapp.model.Survey
+import com.example.surveyapp.model.*
 import java.lang.Integer.parseInt
 
 class StudentAnswerQuestionActivity : AppCompatActivity() {
@@ -44,25 +42,24 @@ class StudentAnswerQuestionActivity : AppCompatActivity() {
 
         // Checking answer list
         try {
-            val answersList = intent.getSerializableExtra("answers") as AnswerList
+            val answersList = intent.getSerializableExtra("answerList") as AnswerList
             answers = answersList
-        } catch (_: NullPointerException) {
-            // there has been no answers stored yet, nothing serious happens
+        } catch (e: NullPointerException) {
+            Toast.makeText(applicationContext, e.toString(), Toast.LENGTH_LONG).show()
         }
 
         // text changing
+        val textQuestion = findViewById<TextView>(R.id.textQuestion)
         val textTitle = findViewById<TextView>(R.id.textTitle)
         val textQuestionCount = findViewById<TextView>(R.id.textQuestionCount)
-        val textQuestion = findViewById<TextView>(R.id.textQuestion)
+
 
         textTitle.text = "${survey.module} Survey"
         textQuestionCount.text = "Question ${index + 1}/10"
         textQuestion.text = questions.getQuestion(index).questionText
 
-        // radio buttons
-
         if (index != answers.getCount()) {
-            when (answers.getAnswer(index)) {
+            when (answers.getAnswer(index).answer) {
                 5 -> {
                     val selected = findViewById<RadioButton>(R.id.radioStrongAgree)
                     selected.isChecked = true
@@ -89,7 +86,7 @@ class StudentAnswerQuestionActivity : AppCompatActivity() {
         // button checking
         val btnPrevious = findViewById<Button>(R.id.btnPrev)
         val btnNext = findViewById<Button>(R.id.btnNext)
-        if (questions.getCount() == 0 || index == 0) {
+        if (answers.getCount() == 0 || index == 0) {
             btnPrevious.visibility = View.INVISIBLE
         }
         if (index == 9) {
@@ -105,7 +102,68 @@ class StudentAnswerQuestionActivity : AppCompatActivity() {
             putExtra("survey", survey)
             putExtra("questions", questions)
             putExtra("index", index.toString())
-            putExtra("answers", answers)
+            putExtra("answerList", answers)
         }
+        startActivity(intent)
+    }
+
+    fun next(view: View) {
+        fun isChecked(checked: Boolean, new: Int, current: Int) : Int {
+            if (checked) {
+                when(new) {
+                    5 -> return 5
+                    4 -> return 4
+                    3 -> return 3
+                    2 -> return 2
+                    1 -> return 1
+                }
+            }
+            return current
+        }
+
+        val strongAgree = findViewById<RadioButton>(R.id.radioStrongAgree).isChecked
+        val agree = findViewById<RadioButton>(R.id.radioAgree).isChecked
+        val neutral = findViewById<RadioButton>(R.id.radioNeutral).isChecked
+        val disagree = findViewById<RadioButton>(R.id.radioDisagree).isChecked
+        val strongDisagree = findViewById<RadioButton>(R.id.radioStrongDisagree).isChecked
+
+
+        // checking if answer is empty, otherwise will store answer
+        var answer = 0
+        answer = isChecked(strongAgree, 5, answer)
+        answer = isChecked(agree, 4, answer)
+        answer = isChecked(neutral, 3, answer)
+        answer = isChecked(disagree, 2, answer)
+        answer = isChecked(strongDisagree, 1, answer)
+
+        if (answer == 0) {
+            Toast.makeText(applicationContext, "Please answer the question", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        val response = StudentSurveyResponse(-1, studentId, survey.surveyId, questions.getQuestion(index).questionId, answer)
+
+        if (index == answers.getCount()) {
+            answers.addAnswer(response)
+        } else {
+            answers.updateAnswerAtIndex(index, response)
+        }
+
+        index++
+
+        if (index != 10) {
+            val intent = Intent(this, StudentAnswerQuestionActivity::class.java).apply {
+                putExtra("id", studentId.toString())
+                putExtra("survey", survey)
+                putExtra("questions", questions)
+                putExtra("index", index.toString())
+                putExtra("answerList", answers)
+            }
+            startActivity(intent)
+        } else {
+            // GO TO CONFIRM BUTTON
+        }
+
+
     }
 }

@@ -3,24 +3,30 @@ package com.example.surveyapp.model
 import java.io.Serializable
 
 class AnswerList(): Serializable {
-    private var answerList: ArrayList<Int> = ArrayList()
+    private var answerList: ArrayList<StudentSurveyResponse> = ArrayList()
     private var count: Int = 0
 
-    fun addAnswer(answer: Int) {
+    fun addAnswer(answer: StudentSurveyResponse) {
         answerList.add(answer)
+        count++
     }
 
-    fun updateAnswerAtIndex(id: Int, answer: Int) {
+    fun addAnswers(answers: ArrayList<StudentSurveyResponse>) {
+        answerList.addAll(answers)
+        count += answers.size
+    }
+
+    fun updateAnswerAtIndex(id: Int, answer: StudentSurveyResponse) {
         answerList[id] = answer
     }
 
     fun getCount(): Int = count
 
-    fun getAnswers(): ArrayList<Int> = answerList
-
-    fun getAnswer(index: Int) : Int {
+    fun getAnswer(index: Int) : StudentSurveyResponse {
         return answerList.get(index)
     }
+
+    fun getAnswers(): ArrayList<StudentSurveyResponse> = answerList
 
     fun clear() {
         answerList.clear()

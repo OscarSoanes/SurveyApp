@@ -67,6 +67,7 @@ class CreateQuestionActivity : AppCompatActivity() {
     fun previous(view: View) {
         index--
 
+        Toast.makeText(applicationContext, "Hello?????", Toast.LENGTH_LONG).show()
         val intent = Intent(this, CreateQuestionActivity::class.java).apply {
             putExtra("id", adminId.toString())
             putExtra("survey", survey)
@@ -74,6 +75,7 @@ class CreateQuestionActivity : AppCompatActivity() {
             putExtra("index", index.toString())
         }
         startActivity(intent)
+
     }
 
     fun next(view: View) {
