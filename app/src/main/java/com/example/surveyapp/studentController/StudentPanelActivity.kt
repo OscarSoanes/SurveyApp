@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import com.example.surveyapp.MainActivity
 import com.example.surveyapp.R
@@ -29,6 +30,13 @@ class StudentPanelActivity : AppCompatActivity() {
         val customAdapterStudentSurvey = CustomAdapterStudentSurvey(applicationContext, surveyList, this)
 
         displayList.adapter = customAdapterStudentSurvey
+
+        var popupMessage = findViewById<TextView>(R.id.textNoSurveys)
+        if (surveyList.isEmpty()) {
+            popupMessage.visibility = View.VISIBLE
+        } else {
+            popupMessage.visibility = View.INVISIBLE
+        }
     }
 
     fun btnLogOut(view: View) {
