@@ -11,6 +11,7 @@ import com.example.surveyapp.R
 import com.example.surveyapp.model.Survey
 import java.lang.Integer.parseInt
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -148,5 +149,18 @@ class NewSurveyActivity : AppCompatActivity() {
             putExtra("id", globalId.toString())
         }
         startActivity(intent)
+    }
+
+    fun btnNow(view: View) {
+        val startDay = findViewById<EditText>(R.id.editStartDay)
+        val startMonth = findViewById<EditText>(R.id.editStartMonth)
+        val startYear = findViewById<EditText>(R.id.editStartYear)
+
+        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.UK)
+        val current = LocalDateTime.now()
+
+        startDay.setText(current.dayOfMonth.toString())
+        startMonth.setText(current.monthValue.toString())
+        startYear.setText(current.year.toString())
     }
 }
