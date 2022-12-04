@@ -44,8 +44,7 @@ class StudentAnswerQuestionActivity : AppCompatActivity() {
         try {
             val answersList = intent.getSerializableExtra("answerList") as AnswerList
             answers = answersList
-        } catch (e: NullPointerException) {
-            Toast.makeText(applicationContext, e.toString(), Toast.LENGTH_LONG).show()
+        } catch (_: NullPointerException) {
         }
 
         // text changing

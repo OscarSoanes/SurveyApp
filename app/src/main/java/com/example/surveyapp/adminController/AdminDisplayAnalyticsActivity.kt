@@ -93,32 +93,30 @@ class AdminDisplayAnalyticsActivity : AppCompatActivity() {
         var database = DataBaseHelper(this)
         var dataList: DataList = database.getAllDataBySurveyAndQuestionID(survey.surveyId, questionList.getQuestion(index).questionId)
 
+        var colours = java.util.ArrayList<Int>()
+
         // adding the entries
         if (dataList.getStrongAgree() != 0) {
             entries.add(PieEntry(dataList.getStrongAgreeAsFloat(), "Strongly Agree"))
+            colours.add(ColorTemplate.rgb("#69B34C"))
         }
         if (dataList.getAgree() != 0) {
             entries.add(PieEntry(dataList.getAgreeAsFloat(), "Agree"))
+            colours.add(ColorTemplate.rgb("#ACB334"))
         }
         if (dataList.getNeutral() != 0) {
             entries.add(PieEntry(dataList.getNeutralAsFloat(), "Neutral"))
+            colours.add(ColorTemplate.rgb("#FAB733"))
         }
         if (dataList.getDisagree() != 0) {
             entries.add(PieEntry(dataList.getDisagreeAsFloat(), "Disagree"))
+            colours.add(ColorTemplate.rgb("#FF4E11"))
         }
         if (dataList.getStrongDisagree() != 0) {
             entries.add(PieEntry(dataList.getStrongDisagreeAsFloat(), "Strongly Disagree"))
+            colours.add(ColorTemplate.rgb("#FF0D0D"))
         }
 
-        // setting colours for chart
-        var colours = java.util.ArrayList<Int>()
-        for (colour in ColorTemplate.MATERIAL_COLORS) {
-            colours.add(colour)
-        }
-
-        for (colour in ColorTemplate.VORDIPLOM_COLORS) {
-            colours.add(colour)
-        }
 
         var dataset = PieDataSet(entries, "")
         dataset.colors = colours

@@ -69,4 +69,9 @@ class LoginActivity : AppCompatActivity() {
         }
         Toast.makeText(applicationContext, "Username or password is incorrect", Toast.LENGTH_LONG).show()
     }
+
+    fun btnBack(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
 }

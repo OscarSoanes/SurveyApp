@@ -46,35 +46,35 @@
             android:id="@+id/radioStrongAgree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="#1B5E20"
+            android:buttonTint="#69B34C"
             android:text="Strongly Agree" />
 
         <RadioButton
             android:id="@+id/radioAgree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="#33691E"
+            android:buttonTint="#ACB334"
             android:text="Agree" />
 
         <RadioButton
             android:id="@+id/radioNeutral"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="#827717"
+            android:buttonTint="#FAB733"
             android:text="Neither Agree nor Disagree" />
 
         <RadioButton
             android:id="@+id/radioDisagree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="#FF6F00"
+            android:buttonTint="#FF4E11"
             android:text="Disagree" />
 
         <RadioButton
             android:id="@+id/radioStrongDisagree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:buttonTint="#B71C1C"
+            android:buttonTint="#FF0D0D"
             android:text="Strongly Disagree" />
     </RadioGroup>
 
@@ -119,8 +119,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginBottom="48dp"
         app:layout_constraintBottom_toTopOf="@+id/btnPrev"
         app:layout_constraintEnd_toEndOf="parent"

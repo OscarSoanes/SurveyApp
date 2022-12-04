@@ -1,6 +1,7 @@
 package com.example.surveyapp
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -30,7 +31,6 @@ class SignupActivity : AppCompatActivity() {
         val userName = findViewById<EditText>(R.id.editTextUsername).text.toString()
         val password = findViewById<EditText>(R.id.editTextPassword).text.toString()
 
-
         // validation
         if (userName.isEmpty() || password.isEmpty()) {
             Toast.makeText(applicationContext,"Username and password are required!", Toast.LENGTH_LONG).show()
@@ -43,7 +43,7 @@ class SignupActivity : AppCompatActivity() {
         }
 
         if (password.length < 6 && !password.contains("[0-9]".toRegex())) {
-            Toast.makeText(applicationContext, "Password is too easy to guess", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Password must be greater than 6 characters and include a number", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -69,7 +69,6 @@ class SignupActivity : AppCompatActivity() {
 
         when (val id = database.addStudent(newStudent).toInt()) {
             in 1 .. Int.MAX_VALUE -> {
-                Toast.makeText(applicationContext, "Working", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, StudentPanelActivity::class.java).apply {
                     putExtra("id", id.toString())
                 }
@@ -79,6 +78,10 @@ class SignupActivity : AppCompatActivity() {
             -2 -> Toast.makeText(applicationContext, "Cannot open database", Toast.LENGTH_LONG).show()
             -3 -> Toast.makeText(applicationContext, "Username already exists", Toast.LENGTH_LONG).show()
         }
+    }
 
+    fun btnBack(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }
