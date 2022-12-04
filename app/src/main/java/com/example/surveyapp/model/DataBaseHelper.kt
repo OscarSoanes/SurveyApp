@@ -597,4 +597,25 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
 
         return questionList
     }
+
+    fun getAllDataBySurveyAndQuestionID(surveyId: Int, questionId: Int) : DataList {
+        val dataList = DataList()
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $StudentSurveyResponseTableName WHERE $Column_SurveyId = $surveyId AND $Column_QuestionId = $questionId"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+        if (cursor.moveToFirst()) {
+            do {
+                when (cursor.getInt(4)) {
+                    5 -> dataList.addOneStrongAgree()
+                    4 -> dataList.addOneAgree()
+                    3 -> dataList.addOneNeutral()
+                    2 -> dataList.addOneDisagree()
+                    1 -> dataList.addOneStrongDisagree()
+                }
+            } while (cursor.moveToNext())
+        }
+
+        return dataList
+    }
 }

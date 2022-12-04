@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ListView
 import com.example.surveyapp.MainActivity
 import com.example.surveyapp.R
+import com.example.surveyapp.model.Admin
 import com.example.surveyapp.model.DataBaseHelper
 import com.example.surveyapp.model.Survey
 import java.lang.Integer.parseInt
@@ -50,7 +51,11 @@ class AdminDisplaySurveysActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun btnData(view: View, surveyId: Int) {
-        // TODO (CREATE STUDENT FIRST)
+    fun btnData(view: View, survey: Survey) {
+        val intent = Intent(this, AdminTableData::class.java).apply {
+            putExtra("id", globalId.toString())
+            putExtra("survey", survey)
+        }
+        startActivity(intent)
     }
 }

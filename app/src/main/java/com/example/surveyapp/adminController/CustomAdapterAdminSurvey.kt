@@ -49,7 +49,7 @@ private var display: AdminDisplaySurveysActivity
             }
 
         data.setOnClickListener {
-            display.btnData(view, surveyId)
+            display.btnData(view, surveyList[position])
         }
 
         return view

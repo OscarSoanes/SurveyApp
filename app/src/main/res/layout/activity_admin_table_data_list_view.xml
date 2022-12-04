@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adminController.AdminTableDataListViewActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Question"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="8dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="37dp"
+                    android:layout_marginTop="3dp"
+                    android:singleLine="false"
+                    android:text="Strongly Agree"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/textStrongAgreePercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="100%"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Agree"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/textAgreePercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="100%"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Neutral"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/textNeutralPercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="100%"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Disagree"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/textDisagreePercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="100%"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="37dp"
+                    android:layout_marginTop="3dp"
+                    android:text="Strongly Disagree"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/textStrongDisagreePercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="100%"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:background="#000000"
+                android:backgroundTint="#000000"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Average"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:id="@+id/textAveragePercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="100%"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
