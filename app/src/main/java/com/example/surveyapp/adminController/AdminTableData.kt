@@ -51,7 +51,8 @@ class AdminTableData : AppCompatActivity() {
     }
 
     fun btnAnalytics(view: View) {
-
+        val intent = Intent(this, AdminDisplayAnalyticsActivity::class.java)
+        startActivity(intent)
     }
 
     fun disableAnalytics() {
