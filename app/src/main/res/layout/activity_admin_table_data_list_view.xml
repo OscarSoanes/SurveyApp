@@ -35,6 +35,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textStrongAgree"
                     android:layout_width="60dp"
                     android:layout_height="37dp"
                     android:layout_marginTop="3dp"
@@ -58,6 +59,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textAgree"
                     android:layout_width="60dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="20dp"
@@ -80,6 +82,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textNeutral"
                     android:layout_width="60dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="20dp"
@@ -102,6 +105,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textDisagree"
                     android:layout_width="60dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="20dp"
@@ -124,6 +128,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textStrongDisagree"
                     android:layout_width="60dp"
                     android:layout_height="37dp"
                     android:layout_marginTop="3dp"
@@ -140,6 +145,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/viewLine"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="3dp"
@@ -160,6 +166,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textAverage"
                     android:layout_width="60dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="3dp"
@@ -177,4 +184,28 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textNoData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="No Data"
+            android:textSize="24sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.060000002" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
