@@ -1,6 +1,7 @@
 package com.example.surveyapp.adminController
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +11,12 @@ import com.example.surveyapp.R
 import com.example.surveyapp.model.DataBaseHelper
 import com.example.surveyapp.model.DataList
 import com.example.surveyapp.model.Question
+import java.text.DecimalFormat
 
 class CustomAdapterAdminTableData (private val appContext: Context, private val questionList: ArrayList<Question>,
 private var display: AdminTableData): BaseAdapter() {
-    private val inflater: LayoutInflater
-            = appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val inflater: LayoutInflater =
+        appContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getCount(): Int {
         return questionList.size
@@ -50,13 +52,39 @@ private var display: AdminTableData): BaseAdapter() {
 
         var dataList: DataList = database.getAllDataBySurveyAndQuestionID(surveyId, questionId)
 
+        // if ends in x.0% hide the x.0%
+        var df = DecimalFormat("0.#")
+
         // setting text
         questionText.text = question.questionText
-        strongAgreeText.text = "${dataList.getStrongAgreePercent()}%"
-        agreeText.text = "${dataList.getAgreePercent()}%"
-        neutralText.text = "${dataList.getNeutralPercent()}%"
-        disagreeText.text = "${dataList.getDisagreePercent()}%"
-        strongDisagreeText.text = "${dataList.getStrongDisagreePercent()}%"
+        strongAgreeText.text = "${df.format(dataList.getStrongAgreePercent())}%"
+        agreeText.text = "${df.format(dataList.getAgreePercent())}%"
+        neutralText.text = "${df.format(dataList.getNeutralPercent())}%"
+        disagreeText.text = "${df.format(dataList.getDisagreePercent())}%"
+        strongDisagreeText.text = "${df.format(dataList.getStrongDisagreePercent())}%"
+        averageText.text = dataList.getAverage()
+
+
+        if (dataList.getAverage() == "Strongly Disagree") {
+            averageText.textSize = 12f
+            averageText.setTextColor(Color.parseColor("#FF0D0D"))
+        }
+        if (dataList.getAverage() == "Disagree") {
+            averageText.textSize = 12f
+            averageText.setTextColor(Color.parseColor("#FF4E11"))
+        }
+        if (dataList.getAverage() == "Neutral") {
+            averageText.setTextColor(Color.parseColor("#FAB733"))
+        }
+        if (dataList.getAverage() == "Agree") {
+            averageText.setTextColor(Color.parseColor("#ACB334"))
+        }
+
+        if (dataList.getAverage() == "Strongly Agree") {
+            averageText.setTextColor(Color.parseColor("#69B34C"))
+        }
+
+
 
         return view
     }

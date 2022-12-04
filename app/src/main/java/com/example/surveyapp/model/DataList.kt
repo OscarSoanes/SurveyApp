@@ -108,4 +108,38 @@ class DataList(): Serializable {
         count = 0
         dataList = IntArray(5) {0}
     }
+
+    fun getAverage() : String {
+        val sA = getStrongAgree()
+        val a = getAgree()
+        val n = getNeutral()
+        val d = getDisagree()
+        val sD = getStrongDisagree()
+        val count = getCount()
+
+        val total = (sA * 5) + (a * 4) + (n * 3) + (d * 2) + (sD * 1)
+        val calculation: Double = total / count.toDouble()
+        val convert: Int = calculation.toInt() * 100
+        when (convert) {
+            in 1 .. 160 -> {
+                return "Strongly Disagree"
+            }
+            in 161 .. 260 -> {
+                return "Disagree"
+            }
+            in 261 .. 340 -> {
+                return "Neutral"
+            }
+            in 341 .. 420 -> {
+                return "Agree"
+            }
+            in 421 .. 500 -> {
+                return "Strongly Agree"
+            }
+            else -> {
+                return "Error"
+            }
+
+        }
+    }
 }
