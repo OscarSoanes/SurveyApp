@@ -12,13 +12,13 @@
         android:layout_height="wrap_content"
         android:text="Surveys to complete"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
+        app:layout_constraintBottom_toTopOf="@+id/moduleStatic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/moduleStatic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -28,19 +28,19 @@
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
-        app:layout_constraintEnd_toStartOf="@+id/textView13"
+        app:layout_constraintEnd_toStartOf="@+id/dueByStatic"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/dueByStatic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="70dp"
         android:text="Due In By:"
         android:textAlignment="center"
         android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView14"
+        app:layout_constraintBaseline_toBaselineOf="@+id/moduleStatic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent" />

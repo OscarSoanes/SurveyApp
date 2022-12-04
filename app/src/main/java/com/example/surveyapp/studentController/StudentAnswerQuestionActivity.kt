@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
@@ -170,5 +171,30 @@ class StudentAnswerQuestionActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    fun radioStrongAgree(view: View) {
+        val imageView = findViewById<ImageView>(R.id.imageView)
+        imageView.setImageResource(R.drawable.strongagree)
+    }
+
+    fun radioAgree(view: View) {
+        val imageView = findViewById<ImageView>(R.id.imageView)
+        imageView.setImageResource(R.drawable.agree)
+    }
+
+    fun radioNeutral(view: View) {
+        val imageView = findViewById<ImageView>(R.id.imageView)
+        imageView.setImageResource(R.drawable.neutral)
+    }
+
+    fun radioDisagree(view:View) {
+        val imageView = findViewById<ImageView>(R.id.imageView)
+        imageView.setImageResource(R.drawable.disagree)
+    }
+
+    fun radioStrongDisagree(view: View) {
+        val imageView = findViewById<ImageView>(R.id.imageView)
+        imageView.setImageResource(R.drawable.strongdisagree)
     }
 }

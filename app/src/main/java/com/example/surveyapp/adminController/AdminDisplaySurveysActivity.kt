@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ListView
+import android.widget.TextView
 import com.example.surveyapp.MainActivity
 import com.example.surveyapp.R
 import com.example.surveyapp.model.Admin
@@ -29,6 +30,14 @@ class AdminDisplaySurveysActivity : AppCompatActivity() {
         val customAdapterAdminSurvey = CustomAdapterAdminSurvey(applicationContext, surveyList, this)
 
         displayList.adapter = customAdapterAdminSurvey
+
+        if (surveyList.isEmpty()) {
+            val noSurveys = findViewById<TextView>(R.id.textNoSurveys)
+            val moduleStatic = findViewById<TextView>(R.id.textModuleStatic)
+
+            noSurveys.visibility = View.VISIBLE
+            moduleStatic.visibility = View.INVISIBLE
+        }
     }
 
     fun newSurvey(view: View) {

@@ -47,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#69B34C"
+            android:onClick="radioStrongAgree"
             android:text="Strongly Agree" />
 
         <RadioButton
@@ -54,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#ACB334"
+            android:onClick="radioAgree"
             android:text="Agree" />
 
         <RadioButton
@@ -61,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#FAB733"
+            android:onClick="radioNeutral"
             android:text="Neither Agree nor Disagree" />
 
         <RadioButton
@@ -68,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#FF4E11"
+            android:onClick="radioDisagree"
             android:text="Disagree" />
 
         <RadioButton
@@ -75,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:buttonTint="#FF0D0D"
+            android:onClick="radioStrongDisagree"
             android:text="Strongly Disagree" />
     </RadioGroup>
 

@@ -32,8 +32,12 @@ class StudentPanelActivity : AppCompatActivity() {
         displayList.adapter = customAdapterStudentSurvey
 
         var popupMessage = findViewById<TextView>(R.id.textNoSurveys)
+        var moduleStatic = findViewById<TextView>(R.id.moduleStatic)
+        var dueByStatic = findViewById<TextView>(R.id.dueByStatic)
         if (surveyList.isEmpty()) {
             popupMessage.visibility = View.VISIBLE
+            moduleStatic.visibility = View.INVISIBLE
+            dueByStatic.visibility = View.INVISIBLE
         } else {
             popupMessage.visibility = View.INVISIBLE
         }
