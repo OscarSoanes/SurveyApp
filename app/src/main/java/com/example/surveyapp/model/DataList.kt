@@ -26,8 +26,8 @@ class DataList(): Serializable {
     fun getStrongAgreePercent(): Double {
         var number: Double
         try {
-            number = (getStrongAgree() / getCount()).toDouble()
-            number = floor(number * 10000) / 10000
+            number = getStrongAgree() / getCount().toDouble()
+            number = floor(number * 10000) / 100
         } catch (e: ArithmeticException) {
             return 0.0
         }
@@ -38,8 +38,8 @@ class DataList(): Serializable {
     fun getAgreePercent(): Double {
         var number: Double
         try {
-            number = (getAgree() / getCount()).toDouble()
-            number = floor(number * 10000) / 10000
+            number = getAgree() / getCount().toDouble()
+            number = floor(number * 10000) / 100
         } catch (e: ArithmeticException) {
             return 0.0
         }
@@ -49,8 +49,8 @@ class DataList(): Serializable {
     fun getNeutralPercent(): Double {
         var number: Double
         try {
-            number = (getNeutral() / getCount()).toDouble()
-            number = floor(number * 10000) / 10000
+            number = getNeutral() / getCount().toDouble()
+            number = floor(number * 10000) / 100
         } catch (e: ArithmeticException) {
             return 0.0
         }
@@ -60,8 +60,8 @@ class DataList(): Serializable {
     fun getDisagreePercent(): Double {
         var number: Double
         try {
-            number = (getDisagree() / getCount()).toDouble()
-            number = floor(number * 10000) / 10000
+            number = getDisagree() / getCount().toDouble()
+            number = floor(number * 10000) / 100
         } catch (e: ArithmeticException) {
             return 0.0
         }
@@ -71,8 +71,8 @@ class DataList(): Serializable {
     fun getStrongDisagreePercent(): Double {
         var number: Double
         try {
-            number = (getStrongDisagree() / getCount()).toDouble()
-            number = floor(number * 10000) / 10000
+            number = getStrongDisagree() / getCount().toDouble()
+            number = floor(number * 10000) / 100
         } catch (e: ArithmeticException) {
             return 0.0
         }
@@ -80,23 +80,23 @@ class DataList(): Serializable {
     }
 
     fun addOneStrongAgree() {
-        dataList[0] = dataList[0]++
+        dataList[0] = dataList[0] + 1
         count++
     }
     fun addOneAgree() {
-        dataList[1] = dataList[1]++
+        dataList[1] = dataList[1] + 1
         count++
     }
     fun addOneNeutral() {
-        dataList[2] = dataList[2]++
+        dataList[2] = dataList[2] + 1
         count++
     }
     fun addOneDisagree() {
-        dataList[3] = dataList[3]++
+        dataList[3] = dataList[3] + 1
         count++
     }
     fun addOneStrongDisagree() {
-        dataList[4] = dataList[4]++
+        dataList[4] = dataList[4] + 1
         count++
     }
 
