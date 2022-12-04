@@ -23,6 +23,22 @@ class DataList(): Serializable {
         return dataList[4]
     }
 
+    fun getStrongAgreeAsFloat() : Float {
+        return dataList[0].toFloat()
+    }
+    fun getAgreeAsFloat() : Float {
+        return dataList[1].toFloat()
+    }
+    fun getNeutralAsFloat() : Float {
+        return dataList[2].toFloat()
+    }
+    fun getDisagreeAsFloat() : Float {
+        return dataList[3].toFloat()
+    }
+    fun getStrongDisagreeAsFloat() : Float {
+        return dataList[4].toFloat()
+    }
+
     fun getStrongAgreePercent(): Double {
         var number: Double
         try {
