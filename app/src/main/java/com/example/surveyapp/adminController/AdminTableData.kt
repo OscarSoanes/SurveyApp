@@ -69,4 +69,8 @@ class AdminTableData : AppCompatActivity() {
         val analytics = findViewById<Button>(R.id.btnChart)
         analytics.visibility = View.INVISIBLE
     }
+
+    fun btnAverage() {
+        // TODO
+    }
 }
