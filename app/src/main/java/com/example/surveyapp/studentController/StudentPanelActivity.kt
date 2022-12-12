@@ -46,6 +46,7 @@ class StudentPanelActivity : AppCompatActivity() {
     fun btnLogOut(view: View) {
         var intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     fun btnStart(view: View, survey: Survey) {

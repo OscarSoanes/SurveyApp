@@ -160,6 +160,7 @@ class StudentAnswerQuestionActivity : AppCompatActivity() {
                 putExtra("answerList", answers)
             }
             startActivity(intent)
+            finish()
         } else {
             var intent = Intent(this, ReviewSurveyActivity::class.java).apply {
                 putExtra("id", studentId.toString())
@@ -169,8 +170,6 @@ class StudentAnswerQuestionActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
-
-
     }
 
     fun radioStrongAgree(view: View) {
@@ -196,5 +195,13 @@ class StudentAnswerQuestionActivity : AppCompatActivity() {
     fun radioStrongDisagree(view: View) {
         val imageView = findViewById<ImageView>(R.id.imageView)
         imageView.setImageResource(R.drawable.strongdisagree)
+    }
+
+    fun btnHome(view: View) {
+        val intent = Intent(this, StudentPanelActivity::class.java).apply {
+            putExtra("id", studentId.toString())
+        }
+        finish()
+        startActivity(intent)
     }
 }

@@ -49,6 +49,7 @@ class AdminDisplaySurveysActivity : AppCompatActivity() {
 
     fun logOff(view: View) {
         val intent = Intent(this, MainActivity::class.java)
+        finish()
         startActivity(intent)
     }
 

@@ -196,6 +196,7 @@ class EditSurveyActivity : AppCompatActivity() {
         val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
             putExtra("id", adminId.toString())
         }
+        finish()
         startActivity(intent)
     }
 

@@ -1,7 +1,6 @@
 package com.example.surveyapp
 
 import android.content.Intent
-import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -55,6 +54,7 @@ class SignupActivity : AppCompatActivity() {
                     val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
                         putExtra("id", id.toString())
                     }
+                    finish()
                     startActivity(intent)
                 }
                 -1 -> Toast.makeText(applicationContext, "Error creating new account", Toast.LENGTH_LONG).show()
@@ -72,6 +72,7 @@ class SignupActivity : AppCompatActivity() {
                 val intent = Intent(this, StudentPanelActivity::class.java).apply {
                     putExtra("id", id.toString())
                 }
+                finish()
                 startActivity(intent)
             }
             -1 -> Toast.makeText(applicationContext, "Error creating new account", Toast.LENGTH_LONG).show()

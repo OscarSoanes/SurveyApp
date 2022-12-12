@@ -44,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
                     putExtra("id", id.toString())
                 }
+                finish()
                 startActivity(intent)
                 return
             }
@@ -64,6 +65,7 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, StudentPanelActivity::class.java).apply {
                 putExtra("id", id.toString())
             }
+            finish()
             startActivity(intent)
             return
         }

@@ -39,6 +39,7 @@ class ConfirmDeleteActivity : AppCompatActivity() {
         val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
             putExtra("id", adminId.toString())
         }
+        finish()
         startActivity(intent)
     }
 
@@ -47,6 +48,7 @@ class ConfirmDeleteActivity : AppCompatActivity() {
             putExtra("id", adminId.toString())
             putExtra("survey", survey.surveyId.toString())
         }
+        finish()
         startActivity(intent)
     }
 }

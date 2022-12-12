@@ -23,7 +23,7 @@
         android:id="@+id/textQuestionCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:text="Question 1/10"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/textQuestion"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -48,7 +48,8 @@
             android:layout_height="wrap_content"
             android:buttonTint="#69B34C"
             android:onClick="radioStrongAgree"
-            android:text="Strongly Agree" />
+            android:text="Strongly Agree"
+            android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/radioAgree"
@@ -56,7 +57,8 @@
             android:layout_height="wrap_content"
             android:buttonTint="#ACB334"
             android:onClick="radioAgree"
-            android:text="Agree" />
+            android:text="Agree"
+            android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/radioNeutral"
@@ -64,7 +66,8 @@
             android:layout_height="wrap_content"
             android:buttonTint="#FAB733"
             android:onClick="radioNeutral"
-            android:text="Neither Agree nor Disagree" />
+            android:text="Neither Agree nor Disagree"
+            android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/radioDisagree"
@@ -72,7 +75,8 @@
             android:layout_height="wrap_content"
             android:buttonTint="#FF4E11"
             android:onClick="radioDisagree"
-            android:text="Disagree" />
+            android:text="Disagree"
+            android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/radioStrongDisagree"
@@ -80,7 +84,8 @@
             android:layout_height="wrap_content"
             android:buttonTint="#FF0D0D"
             android:onClick="radioStrongDisagree"
-            android:text="Strongly Disagree" />
+            android:text="Strongly Disagree"
+            android:textSize="20sp" />
     </RadioGroup>
 
     <TextView
@@ -106,7 +111,7 @@
         android:backgroundTint="#33691E"
         android:onClick="previous"
         android:text="Previous"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnHome"
         app:layout_constraintEnd_toStartOf="@+id/btnNext"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
@@ -126,10 +131,22 @@
         android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/btnPrev"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/btnHome"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#B71C1C"
+        android:onClick="btnHome"
+        android:text="Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

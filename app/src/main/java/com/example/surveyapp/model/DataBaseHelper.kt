@@ -47,7 +47,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
     val studentSurveyResponse_ID = "Id"
     val Column_StudentId = "StudentId"
     val Column_SurveyId = "SurveyId"
-    val Column_QuestionId = "QuesitonId"
+    val Column_QuestionId = "QuestionId"
     val Column_Answer = "Answer"
 
 
@@ -150,130 +150,6 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
             db.close()
             return Survey(0, 0, "", "", "")
         }
-    }
-
-    // returns all admins in admin table
-    fun getAllAdmins(): ArrayList<Admin> {
-        val adminList = ArrayList<Admin>()
-        val db: SQLiteDatabase = this.readableDatabase
-        val sqlStatement = "SELECT * FROM $AdminTableName"
-
-        val cursor: Cursor = db.rawQuery(sqlStatement, null)
-
-        if (cursor.moveToFirst())
-            do {
-                val id: Int = cursor.getInt(0)
-                val login: String = cursor.getString(1)
-                val password: String = cursor.getString(2)
-
-                val admin = Admin(id, login, password)
-                adminList.add(admin)
-            } while (cursor.moveToNext())
-
-        cursor.close()
-        db.close()
-
-        return adminList
-    }
-
-    // returns all students in students table
-    fun getAllStudents(): ArrayList<Student> {
-        val studentList = ArrayList<Student>()
-        val db: SQLiteDatabase = this.readableDatabase
-        val sqlStatement = "SELECT * FROM $StudentTableName"
-
-        val cursor: Cursor = db.rawQuery(sqlStatement, null)
-
-        if (cursor.moveToFirst())
-            do {
-                val id: Int = cursor.getInt(0)
-                val login: String = cursor.getString(1)
-                val password: String = cursor.getString(2)
-
-                val student = Student(id, login, password)
-                studentList.add(student)
-            } while (cursor.moveToNext())
-
-        cursor.close()
-        db.close()
-
-        return studentList
-    }
-
-    // returns all responces in StudentSurveyResponse table
-    fun getAllStudentSurveyResponces(): ArrayList<StudentSurveyResponse> {
-        val ssrList = ArrayList<StudentSurveyResponse>()
-        val db: SQLiteDatabase = this.readableDatabase
-        val sqlStatement = "SELECT * FROM $StudentSurveyResponseTableName"
-
-        val cursor: Cursor = db.rawQuery(sqlStatement, null)
-
-        if (cursor.moveToFirst())
-            do {
-                val id: Int = cursor.getInt(0)
-                val studentId: Int = cursor.getInt(1)
-                val surveyId: Int = cursor.getInt(2)
-                val questionId: Int = cursor.getInt(3)
-                val answer: Int = cursor.getInt(4)
-
-                val ssr = StudentSurveyResponse(id, studentId, surveyId, questionId, answer)
-                ssrList.add(ssr)
-            } while (cursor.moveToNext())
-
-        cursor.close()
-        db.close()
-
-        return ssrList
-    }
-
-    // returns all surveys in survey table
-    fun getAllSurveys(): ArrayList<Survey> {
-        val surveyList = ArrayList<Survey>()
-        val db: SQLiteDatabase = this.readableDatabase
-        val sqlStatement = "SELECT * FROM $SurveyTableName"
-
-        val cursor: Cursor = db.rawQuery(sqlStatement, null)
-
-        if (cursor.moveToFirst())
-            do {
-                val id: Int = cursor.getInt(0)
-                val adminId: Int = cursor.getInt(1)
-                val module: String = cursor.getString(2)
-                var startDate: String = cursor.getString(3)
-                var endDate: String = cursor.getString(4)
-
-                val survey = Survey(id, adminId, module, startDate, endDate)
-                surveyList.add(survey)
-            } while (cursor.moveToNext())
-
-        cursor.close()
-        db.close()
-
-        return surveyList
-    }
-
-    // returns all questions in question table
-    fun getAllQuestions(): ArrayList<Question> {
-        val questionList = ArrayList<Question>()
-        val db: SQLiteDatabase = this.readableDatabase
-        val sqlStatement = "SELECT * FROM $QuestionTableName"
-
-        val cursor: Cursor = db.rawQuery(sqlStatement, null)
-
-        if (cursor.moveToFirst())
-            do {
-                val id: Int = cursor.getInt(0)
-                val surveyId: Int = cursor.getInt(1)
-                val text: String = cursor.getString(2)
-
-                val question = Question(id, surveyId, text)
-                questionList.add(question)
-            } while (cursor.moveToNext())
-
-        cursor.close()
-        db.close()
-
-        return questionList
     }
 
     // Adds an admin to table, returns -1 if error occurred
@@ -565,9 +441,10 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
             // ensuring end date has not passed
             val sdf = java.text.SimpleDateFormat("dd/MM/yyyy", Locale.UK)
             val ed = sdf.parse(survey.endDate)
+            val sd = sdf.parse(survey.startDate)
             val current = sdf.parse(sdf.format(Date()))
 
-            if (ed.after(current)) {
+            if (ed.after(current) && sd.before(current)) {
                 return true
             }
         }

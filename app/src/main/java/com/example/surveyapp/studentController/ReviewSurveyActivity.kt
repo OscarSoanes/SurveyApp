@@ -52,7 +52,9 @@ class ReviewSurveyActivity : AppCompatActivity() {
         val intent = Intent(this, StudentPanelActivity::class.java).apply {
             putExtra("id", studentId.toString())
         }
+        finish()
         startActivity(intent)
+
     }
 
     fun btnReturn(view: View) {
@@ -65,6 +67,7 @@ class ReviewSurveyActivity : AppCompatActivity() {
             putExtra("questions", questionList)
             putExtra("answerList", answerList)
         }
+        finish()
         startActivity(intent)
     }
 }

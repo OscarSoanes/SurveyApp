@@ -148,6 +148,7 @@ class NewSurveyActivity : AppCompatActivity() {
         val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
             putExtra("id", globalId.toString())
         }
+        finish()
         startActivity(intent)
     }
 

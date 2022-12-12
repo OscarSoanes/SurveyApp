@@ -55,6 +55,7 @@ class ConfirmSurveyAdminActivity : AppCompatActivity() {
         val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
             putExtra("id", adminId.toString())
         }
+        finish()
         startActivity(intent)
     }
 
@@ -65,7 +66,7 @@ class ConfirmSurveyAdminActivity : AppCompatActivity() {
             putExtra("index", "0")
             putExtra("questions", questions)
         }
-
+        finish()
         startActivity(intent)
     }
 }

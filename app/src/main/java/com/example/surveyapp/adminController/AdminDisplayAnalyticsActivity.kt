@@ -143,6 +143,7 @@ class AdminDisplayAnalyticsActivity : AppCompatActivity() {
             putExtra("questionList", questionList)
             putExtra("index", index.toString())
         }
+        finish()
         startActivity(intent)
     }
 
@@ -155,6 +156,7 @@ class AdminDisplayAnalyticsActivity : AppCompatActivity() {
             putExtra("questionList", questionList)
             putExtra("index", index.toString())
         }
+        finish()
         startActivity(intent)
     }
 
@@ -163,6 +165,7 @@ class AdminDisplayAnalyticsActivity : AppCompatActivity() {
             putExtra("id", globalId.toString())
             putExtra("survey", survey)
         }
+        finish()
         startActivity(intent)
     }
 }
