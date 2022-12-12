@@ -82,6 +82,7 @@
         android:layout_marginBottom="16dp"
         android:width="120dp"
         android:backgroundTint="#0D47A1"
+        android:onClick="btnAverage"
         android:text="Average"
         app:layout_constraintBottom_toTopOf="@+id/btnReturn"
         app:layout_constraintEnd_toEndOf="parent"
