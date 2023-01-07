@@ -46,23 +46,6 @@ class SignupActivity : AppCompatActivity() {
             return
         }
 
-        if (globalRole == "Teacher") {
-            val newAdmin = Admin(-1, userName, password)
-            val database = DataBaseHelper(this)
-            when (val id = database.addAdmin(newAdmin).toInt()) {
-                in 1 .. Int.MAX_VALUE -> {
-                    val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
-                        putExtra("id", id.toString())
-                    }
-                    finish()
-                    startActivity(intent)
-                }
-                -1 -> Toast.makeText(applicationContext, "Error creating new account", Toast.LENGTH_LONG).show()
-                -2 -> Toast.makeText(applicationContext, "Cannot open database", Toast.LENGTH_LONG).show()
-                -3 -> Toast.makeText(applicationContext, "Username already exists", Toast.LENGTH_LONG).show()
-            }
-            return
-        }
         val newStudent = Student(-1, userName, password)
         val database = DataBaseHelper(this)
 

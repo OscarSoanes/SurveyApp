@@ -21,7 +21,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="400dp"
         android:layout_marginTop="120dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,15 +41,17 @@
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:height="45dp"
-        android:backgroundTint="#0D47A1"
+        android:backgroundTint="#673AB7"
         android:onClick="newSurvey"
         android:text="New Survey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnLogOff"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAllAnalytics" />
 
     <Button
         android:id="@+id/btnLogOff"
@@ -78,6 +80,20 @@
         app:layout_constraintTop_toBottomOf="@+id/textTitle"
         app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/btnAllAnalytics"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#673AB7"
+        android:onClick="btnAnalytics"
+        android:text="Analytics"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -94,5 +110,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

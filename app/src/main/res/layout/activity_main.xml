@@ -68,7 +68,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#1B5E20"
+        android:backgroundTint="#673AB7"
         android:onClick="loginStudent"
         android:text="Log In"
         app:layout_constraintBottom_toTopOf="@+id/btnSignUpStudent"
@@ -79,25 +79,12 @@
         android:id="@+id/btnLoginTeacher"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#0D47A1"
+        android:layout_marginBottom="200dp"
+        android:backgroundTint="#673AB7"
         android:onClick="loginAdmin"
         android:text="Log In"
-        app:layout_constraintBottom_toTopOf="@+id/btnSignUpTeacher"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnSignUpTeacher"
-        android:layout_width="150dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="168dp"
-        android:backgroundTint="#0D47A1"
-        android:onClick="signupAdmin"
-        android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -105,7 +92,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        android:backgroundTint="#1B5E20"
+        android:backgroundTint="#673AB7"
         android:onClick="signupStudent"
         android:text="Sign Up"
         app:layout_constraintBottom_toTopOf="@+id/textTeacher"

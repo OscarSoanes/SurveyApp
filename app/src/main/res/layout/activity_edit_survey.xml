@@ -172,7 +172,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
-        android:backgroundTint="#0D47A1"
+        android:backgroundTint="#673AB7"
         android:onClick="btnSave"
         android:text="Save"
         app:layout_constraintBottom_toTopOf="@+id/btnReturn"
