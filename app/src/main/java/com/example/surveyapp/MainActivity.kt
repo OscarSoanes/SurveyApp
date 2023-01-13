@@ -31,11 +31,4 @@ class MainActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
-
-    fun signupAdmin(view: View) {
-        val intent = Intent(this, SignupActivity::class.java).apply {
-            putExtra("role", "Teacher")
-        }
-        startActivity(intent)
-    }
 }

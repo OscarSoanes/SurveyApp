@@ -137,10 +137,10 @@ class DataList(): Serializable {
         val calculation: Double = total / count.toDouble()
         val convert: Int = calculation.toInt() * 100
         when (convert) {
-            in 1 .. 160 -> {
+            in 1 .. 180 -> {
                 return "Strongly Disagree"
             }
-            in 161 .. 260 -> {
+            in 181 .. 260 -> {
                 return "Disagree"
             }
             in 261 .. 340 -> {
@@ -157,5 +157,19 @@ class DataList(): Serializable {
             }
 
         }
+    }
+
+    fun getAverageFloat(): Float {
+        val sA = getStrongAgree()
+        val a = getAgree()
+        val n = getNeutral()
+        val d = getDisagree()
+        val sD = getStrongDisagree()
+        val count = getCount()
+
+        val total = (sA * 5) + (a * 4) + (n * 3) + (d * 2) + (sD * 1)
+        val calculation: Double = total / count.toDouble()
+
+        return calculation.toFloat()
     }
 }

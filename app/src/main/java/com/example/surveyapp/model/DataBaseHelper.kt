@@ -402,6 +402,14 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         return result
     }
 
+    fun deleteResponseBySurveyId(eID: Int) : Boolean {
+        val db: SQLiteDatabase = this.writableDatabase
+        val result = db.delete(StudentSurveyResponseTableName, "$Column_SurveyId = $eID", null) == 1
+
+        db.close()
+        return result
+    }
+
     fun getAllSurveysToBeCompleted(eID: Int) : ArrayList<Survey> {
         val surveyList = ArrayList<Survey>()
         val db: SQLiteDatabase = this.readableDatabase
@@ -444,7 +452,7 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
             val sd = sdf.parse(survey.startDate)
             val current = sdf.parse(sdf.format(Date()))
 
-            if (ed.after(current) && sd.before(current)) {
+            if (ed.after(current) && current.after(sd) || current.equals(sd)) {
                 return true
             }
         }
@@ -494,5 +502,18 @@ class DataBaseHelper(context: Context) : SQLiteOpenHelper(context, databaseName,
         }
 
         return dataList
+    }
+
+    fun getResponseGreaterThanOne(surveyId: Int) : Boolean {
+        val db: SQLiteDatabase = this.readableDatabase
+        val sqlStatement = "SELECT * FROM $StudentSurveyResponseTableName WHERE $Column_SurveyId = $surveyId"
+
+        val cursor: Cursor = db.rawQuery(sqlStatement, null)
+        if (cursor.moveToFirst()) {
+            cursor.close()
+            db.close()
+            return true
+        }
+        return false
     }
 }

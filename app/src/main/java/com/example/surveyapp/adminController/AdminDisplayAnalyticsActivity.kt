@@ -39,7 +39,6 @@ class AdminDisplayAnalyticsActivity : AppCompatActivity() {
         // change text values
         val txtModule = findViewById<TextView>(R.id.textTitle)
         val txtQuestion = findViewById<TextView>(R.id.textQuestion)
-
         txtModule.text = "${survey.module}'s Pie-chart"
         txtQuestion.text = "${questionList.getQuestion(index).questionText}"
 

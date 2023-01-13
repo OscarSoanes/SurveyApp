@@ -67,6 +67,17 @@ class AdminTableData : AppCompatActivity() {
 
     fun disableAnalytics() {
         val analytics = findViewById<Button>(R.id.btnChart)
+        val average = findViewById<Button>(R.id.btnAverage)
         analytics.visibility = View.INVISIBLE
+        average.visibility = View.INVISIBLE
+    }
+
+    fun btnAverage(view: View) {
+        val intent = Intent(this, DisplayAverageActivity::class.java).apply {
+            putExtra("id", globalId.toString())
+            putExtra("survey", survey)
+            putExtra("questionList", questionList)
+        }
+        startActivity(intent)
     }
 }

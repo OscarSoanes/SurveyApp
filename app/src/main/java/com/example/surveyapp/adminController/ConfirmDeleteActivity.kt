@@ -32,8 +32,8 @@ class ConfirmDeleteActivity : AppCompatActivity() {
     fun btnDelete(view: View) {
         val database = DataBaseHelper(this)
         database.deleteSurvey(survey)
-
         database.deleteQuestionBySurveyId(survey.surveyId)
+        database.deleteResponseBySurveyId(survey.surveyId)
 
         Toast.makeText(applicationContext, "Successfully deleted", Toast.LENGTH_LONG).show()
         val intent = Intent(this, AdminDisplaySurveysActivity::class.java).apply {
